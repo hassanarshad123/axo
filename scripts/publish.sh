@@ -227,10 +227,20 @@ cf GET "/accounts/$CF_ACCOUNT_ID/pages/projects/$PAGES_PROJECT" | cf_success ||
 wrangler pages deploy site --project-name "$PAGES_PROJECT" --branch main --commit-dirty=true
 cf GET "/accounts/$CF_ACCOUNT_ID/pages/projects/$PAGES_PROJECT/domains" | has_name "$DOMAIN" ||
   cf_ok POST "/accounts/$CF_ACCOUNT_ID/pages/projects/$PAGES_PROJECT/domains" "{\"name\":\"$DOMAIN\"}"
+# The Pages address can differ from the project name: "axo" was taken, so it is axo-cy4.pages.dev.
+pages_host="$(cf GET "/accounts/$CF_ACCOUNT_ID/pages/projects/$PAGES_PROJECT" | plutil -extract result.subdomain raw -)"
 zone_id="$(cf GET "/zones?name=$ZONE" | plutil -extract result.0.id raw -)"
-cf GET "/zones/$zone_id/dns_records?name=$DOMAIN" | has_name "$DOMAIN" ||
-  cf_ok POST "/zones/$zone_id/dns_records" \
-    "{\"type\":\"CNAME\",\"name\":\"$DOMAIN\",\"content\":\"$PAGES_PROJECT.pages.dev\",\"proxied\":true}"
+dns_answer="$(cf GET "/zones/$zone_id/dns_records?name=$DOMAIN")"
+dns_record="{\"type\":\"CNAME\",\"name\":\"$DOMAIN\",\"content\":\"$pages_host\",\"proxied\":true}"
+if ! has_name "$DOMAIN" <<<"$dns_answer"; then
+  cf_ok POST "/zones/$zone_id/dns_records" "$dns_record"
+else
+  dns_content="$(plutil -extract result.0.content raw - <<<"$dns_answer")"
+  if [[ "$dns_content" != "$pages_host" ]]; then
+    [[ "$dns_content" == *.pages.dev ]] || fail "$DOMAIN already points to $dns_content. Check it by hand."
+    cf_ok PATCH "/zones/$zone_id/dns_records/$(plutil -extract result.0.id raw - <<<"$dns_answer")" "$dns_record"
+  fi
+fi
 
 say "Check the live URLs (a new domain can take a few minutes)"
 check_url() { # check_url <url> [text the body must hold]
