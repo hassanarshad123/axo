@@ -151,11 +151,16 @@ cf() { # cf <method> <path> [json]: one Cloudflare API call; prints the JSON ans
   if [[ -n "${3:-}" ]]; then args+=(--data "$3"); fi
   curl "${args[@]}" <<<"Authorization: Bearer $CF_TOKEN"
 }
+cf_success() { # cf_success: reads a Cloudflare answer on stdin; true when it says "success": true.
+  [[ "$(plutil -extract success raw - 2>/dev/null)" == "true" ]]
+}
 cf_ok() { # cf_ok <method> <path> <json>: like cf, but stops when Cloudflare refuses.
   local answer
   answer="$(cf "$@")"
-  grep -q '"success":true' <<<"$answer" || fail "Cloudflare refused $1 $2: $(head -c 400 <<<"$answer")"
+  cf_success <<<"$answer" || fail "Cloudflare refused $1 $2: $(head -c 400 <<<"$answer")"
 }
+# Cloudflare answers with spaces in its JSON ("name": "x"), so match the name with a pattern.
+has_name() { grep -Eq "\"name\": *\"$1\""; }
 as_hassan() { git -c user.name="Hassan Arshad" -c user.email="$PRIVATE_EMAIL" "$@"; }
 
 say "Public repo $OWNER/$REPO"
@@ -217,13 +222,13 @@ fi
 
 say "Website on Cloudflare Pages"
 export CLOUDFLARE_API_TOKEN="$CF_TOKEN" CLOUDFLARE_ACCOUNT_ID="$CF_ACCOUNT_ID"
-cf GET "/accounts/$CF_ACCOUNT_ID/pages/projects/$PAGES_PROJECT" | grep -q '"success":true' ||
+cf GET "/accounts/$CF_ACCOUNT_ID/pages/projects/$PAGES_PROJECT" | cf_success ||
   wrangler pages project create "$PAGES_PROJECT" --production-branch main
 wrangler pages deploy site --project-name "$PAGES_PROJECT" --branch main --commit-dirty=true
-cf GET "/accounts/$CF_ACCOUNT_ID/pages/projects/$PAGES_PROJECT/domains" | grep -q "\"name\":\"$DOMAIN\"" ||
+cf GET "/accounts/$CF_ACCOUNT_ID/pages/projects/$PAGES_PROJECT/domains" | has_name "$DOMAIN" ||
   cf_ok POST "/accounts/$CF_ACCOUNT_ID/pages/projects/$PAGES_PROJECT/domains" "{\"name\":\"$DOMAIN\"}"
 zone_id="$(cf GET "/zones?name=$ZONE" | plutil -extract result.0.id raw -)"
-cf GET "/zones/$zone_id/dns_records?name=$DOMAIN" | grep -q "\"name\":\"$DOMAIN\"" ||
+cf GET "/zones/$zone_id/dns_records?name=$DOMAIN" | has_name "$DOMAIN" ||
   cf_ok POST "/zones/$zone_id/dns_records" \
     "{\"type\":\"CNAME\",\"name\":\"$DOMAIN\",\"content\":\"$PAGES_PROJECT.pages.dev\",\"proxied\":true}"
 

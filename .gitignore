@@ -44,3 +44,6 @@ design/voice/raw/
 *.p8
 *.key
 *.pem
+
+# Cache of wrangler (the Cloudflare upload tool), made by scripts/publish.sh.
+.wrangler/
