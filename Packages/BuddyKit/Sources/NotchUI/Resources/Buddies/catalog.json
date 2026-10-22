@@ -1,0 +1,113 @@
+{
+  "buddies": [
+    {
+      "id": "09-goo-slime",
+      "number": 9,
+      "name": "Goo",
+      "mainHue": 175
+    },
+    {
+      "id": "10-neko-cat",
+      "number": 10,
+      "name": "Neko",
+      "mainHue": 35,
+      "hueCenter": 38,
+      "hueTolerance": 22,
+      "minSaturation": 0.5,
+      "minValue": 0.65
+    },
+    {
+      "id": "11-bit-robot",
+      "number": 11,
+      "name": "Bit",
+      "mainHue": 115
+    },
+    {
+      "id": "16-sprout-bean",
+      "number": 16,
+      "name": "Sprout",
+      "mainHue": 75,
+      "hueCenter": 97,
+      "hueTolerance": 38
+    },
+    {
+      "id": "17-nubo-cloud",
+      "number": 17,
+      "name": "Nubo",
+      "mainHue": 120,
+      "minSaturation": 0.04
+    },
+    {
+      "id": "18-shelly-turtle",
+      "number": 18,
+      "name": "Shelly",
+      "mainHue": 170,
+      "hueTolerance": 85
+    },
+    {
+      "id": "19-pengu-penguin",
+      "number": 19,
+      "name": "Pengu",
+      "mainHue": 220
+    },
+    {
+      "id": "20-slo-sloth",
+      "number": 20,
+      "name": "Slo",
+      "mainHue": 25
+    },
+    {
+      "id": "21-hoot-owl",
+      "number": 21,
+      "name": "Hoot",
+      "mainHue": 280
+    },
+    {
+      "id": "22-mochi-dumpling",
+      "number": 22,
+      "name": "Mochi",
+      "mainHue": 355
+    },
+    {
+      "id": "23-kero-frog",
+      "number": 23,
+      "name": "Kero",
+      "mainHue": 85,
+      "hueCenter": 105,
+      "hueTolerance": 45
+    },
+    {
+      "id": "24-usa-bunny",
+      "number": 24,
+      "name": "Usa",
+      "mainHue": 5
+    },
+    {
+      "id": "25-axo-axolotl",
+      "number": 25,
+      "name": "Axo",
+      "mainHue": 345
+    },
+    {
+      "id": "26-moni-computer",
+      "number": 26,
+      "name": "Moni",
+      "mainHue": 35,
+      "hueTolerance": 24
+    },
+    {
+      "id": "27-hammy-hamster",
+      "number": 27,
+      "name": "Hammy",
+      "mainHue": 35,
+      "hueTolerance": 18,
+      "minValue": 0.6
+    },
+    {
+      "id": "29-hassan-desi",
+      "number": 29,
+      "name": "Hassan",
+      "mainHue": 210
+    }
+  ]
+}

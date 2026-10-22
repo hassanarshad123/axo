@@ -1,0 +1,6 @@
+# Paths that never go to the public repo (docs/DECISIONS.md T55). scripts/publish.sh reads this file.
+# One glob per line, from the repo root. A line that starts with "!" keeps that path.
+private
+docs/launch
+design/*
+!design/voice

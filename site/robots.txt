@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://axo.zensbot.com/sitemap.xml

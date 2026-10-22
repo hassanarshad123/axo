@@ -1,0 +1,25 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Axo</title>
+        <item>
+            <title>1.0.0</title>
+            <pubDate>Fri, 23 Oct 2026 00:01:28 +0500</pubDate>
+            <link>https://axo.zensbot.com</link>
+            <sparkle:version>16</sparkle:version>
+            <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[The first release of Axo: a calm buddy in your MacBook notch for posture and breaks.
+
+- **Posture checks.** The camera looks for 3 seconds each minute. Pictures are checked on your Mac and never sent. AirPods head motion helps when the camera is off.
+- **Breaks that fit your day.** Stand up, rest your eyes, stretch and drink water. Reminders wait while you are in a call, away or on a locked screen.
+- **16 buddies, plus secret buddies that open with a code.** Pick one, give it a name and a color. It grows as you look after yourself.
+- **A calm voice coach** guides each stretch. It stays quiet in calls.
+- **Progress.** A daily score, streaks, goals and levels, all kept on your Mac.
+
+Needs macOS 14 or later. Free, with no account.
+]]></description>
+            <enclosure url="https://github.com/hassanarshad123/axo/releases/download/v1.0.0/Axo.dmg" length="21032153" type="application/octet-stream" sparkle:edSignature="e0Y24Ru+jAT88CrH7WiatyVPScodAzClJ8mJIVHk4CppNFvSg/r5w31B8xRM2Dx5BHf52FzHmEE8q01a5O8ZBQ=="/>
+        </item>
+    </channel>
+</rss>

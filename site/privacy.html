@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Axo privacy notice</title>
+<meta name="description" content="How Axo handles your data: camera frames stay on your Mac, no account, two network calls (update check and anonymous counts you can turn off), and a website with no cookies or trackers.">
+<link rel="canonical" href="https://axo.zensbot.com/privacy">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#fbf8ff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141119" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/styles.css">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Axo">
+<meta property="og:title" content="Axo privacy notice">
+<meta property="og:description" content="Camera frames stay on your Mac. No account. Two network calls, listed in full.">
+<meta property="og:url" content="https://axo.zensbot.com/privacy">
+<meta property="og:image" content="https://axo.zensbot.com/assets/social-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Axo, a pink pixel axolotl, waves next to the words: A posture and break buddy in your MacBook notch.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Axo privacy notice">
+<meta name="twitter:description" content="Camera frames stay on your Mac. No account. Two network calls, listed in full.">
+<meta name="twitter:image" content="https://axo.zensbot.com/assets/social-card.png">
+<meta name="twitter:image:alt" content="Axo, a pink pixel axolotl, waves next to the words: A posture and break buddy in your MacBook notch.">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Axo home">
+      <img src="/assets/icon-128.png" width="32" height="32" alt="">
+      <span>Axo</span>
+    </a>
+    <nav aria-label="Main">
+      <ul class="nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="https://github.com/hassanarshad123/axo">GitHub</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap doc">
+<article>
+  <h1>Axo privacy notice</h1>
+  <p class="meta">Effective date: the day of the first public release.</p>
+
+  <p>Axo is a free, open-source Mac app made by Hassan Arshad. It helps with posture and breaks. In this notice, "we" means Hassan Arshad. The installer shows "Zensbot LLC" because the app is signed with the Zensbot LLC Apple Developer ID.</p>
+
+  <section class="summary" aria-labelledby="short">
+    <h2 id="short">The short version</h2>
+    <ul>
+      <li>Axo works on your Mac. Camera frames are checked in memory and dropped. They are never saved or sent, unless you turn on progress photos, which stay on your Mac.</li>
+      <li>There is no account and no cloud sync. Your settings and history stay on your Mac.</li>
+      <li>Axo makes two kinds of network calls: an update check, and anonymous usage counts. You can turn the counts off.</li>
+      <li>This website has no cookies, no analytics and no trackers.</li>
+    </ul>
+  </section>
+
+  <h2 id="on-your-mac">What the app keeps on your Mac</h2>
+  <p>Axo keeps your settings, your buddy (its name and color), your reminders and your history on your Mac, in <code>~/Library/Application Support/Axo</code> and in Axo's settings file. iCloud sync is off for them. Axo does not send any of this anywhere.</p>
+  <p>Your history holds results only: the time and result of each posture check (such as "good" or "head dropped"), your reminders and breaks (shown, done, snoozed or finished), your minutes at the Mac each day, and your buddy's level. It never holds a picture or a body measurement. Each check and reminder event is deleted after 90 days. The daily totals stay, so your buddy keeps its level. "Delete history…" in the Progress window deletes all of it.</p>
+  <p>Your own backups, such as Time Machine, may include your settings and history, as they do for any app. Progress photos are left out of Time Machine.</p>
+
+  <h2 id="camera">Camera</h2>
+  <ul>
+    <li>Axo uses the camera to check your posture. Apple's on-device body pose detection finds your head and shoulders in each frame.</li>
+    <li>Each frame is checked in memory on your Mac and then dropped. Frames are never saved or sent, unless you turn on progress photos (see below).</li>
+    <li>The camera runs for about 3 seconds each minute, and only while you are at the Mac. On a built-in camera, the green camera light shows each check.</li>
+    <li>When you have not used the keyboard or mouse for about 100 seconds, Axo may look with the camera for up to 3 seconds to see if a person is still there, for example because you are reading. While it sees you, it looks again once a minute. If it sees nobody, it treats you as away and stops looking until you use the Mac again. It never looks during a call, a break or a pause, or while the screen is locked.</li>
+    <li>Axo keeps only the result of each check, such as "good" or "head dropped", with the time. This stays on your Mac.</li>
+    <li>You can turn the camera off in Axo's Settings, or remove its access in System Settings &gt; Privacy &amp; Security &gt; Camera. Reminders still work.</li>
+  </ul>
+
+  <h2 id="photos">Progress photos</h2>
+  <ul>
+    <li>Off by default. Nothing is saved until you turn them on in Settings.</li>
+    <li>When they are on: at most one photo a day, plus at most one photo a day when your posture is bad.</li>
+    <li>They are stored only on your Mac, in <code>~/Library/Application Support/Axo/Photos</code>. Axo never sends them anywhere.</li>
+    <li>Axo copies a camera frame only while this switch is on.</li>
+    <li>Only your Mac user account can open the folder. It is left out of Time Machine backups. The photo files hold no location or camera details (metadata).</li>
+    <li>Each photo is deleted after 30 days. One button deletes all of them at once.</li>
+  </ul>
+
+  <h2 id="airpods">AirPods</h2>
+  <p>If you turn this on and wear supported AirPods or headphones, Axo reads head motion during the same short checks. It uses only the angle of your head. macOS asks for your permission first. The readings are not sent anywhere.</p>
+
+  <h2 id="microphone">Microphone</h2>
+  <p>Axo never listens to your microphone and does not ask for microphone access. To pause reminders during calls, it only asks macOS whether another app is using a microphone.</p>
+
+  <h2 id="voice">Voice</h2>
+  <p>The voice lines were made once, before release, and ship inside the app. Axo plays them on your Mac. It does not record your voice, and it sends no audio anywhere. The voice stays quiet during calls and while any app uses a microphone.</p>
+
+  <h2 id="network">Network calls</h2>
+  <p>Axo makes exactly two kinds of network calls. Nothing else in the app uses the network.</p>
+
+  <h3 id="updates">1. Update check</h3>
+  <ul>
+    <li><strong>What it does:</strong> Axo uses Sparkle, an open-source update tool, to check for new versions. It downloads a list of versions from <code>https://axo.zensbot.com/appcast.xml</code>. It checks once a day, and when you click "Check for Updates…" in the menu. You can turn the daily check off in Settings &gt; General. When you install a new version, Axo downloads it from the link in that list (Axo's releases on GitHub).</li>
+    <li><strong>What it sends:</strong> only what any web request sends: your IP address, and the app's name and version. Axo does not send Sparkle's optional system profile, so no details about your Mac are sent with it.</li>
+    <li><strong>Who receives it:</strong> Cloudflare, which hosts axo.zensbot.com, and GitHub, which hosts the update file.</li>
+  </ul>
+
+  <h3 id="counts">2. Anonymous usage counts</h3>
+  <ul>
+    <li><strong>What it does:</strong> Axo sends anonymous counts to TelemetryDeck, to learn how the app is used, for example how many people use eye rest. This is on by default, and starts only after you finish the setup window. You can turn it off with "Share anonymous usage counts", in the setup window or in Settings &gt; General. When it is off, Axo sends no counts and deletes its random ID (see below).</li>
+    <li><strong>What it sends:</strong> only these events: "app started", "reminder done" and "reminder snoozed" (with the kind of reminder, such as eye rest), "break finished" (with the kind), "setup finished" and "buddy picked" (with the buddy's id, such as "25-axo-axolotl", or "locked" for a secret buddy). Axo makes each count itself. It does not use TelemetryDeck's software, so nothing is added to the list below.</li>
+    <li><strong>What comes with each event:</strong> the app version and build, the macOS version (such as "15.1"), the chip type (Apple or Intel), the time the event happened, and whether this is a test build. Each count also has two random IDs. One is made on your Mac the first time a count is sent. It is scrambled (hashed) before it leaves your Mac, so TelemetryDeck can count people without knowing who they are. The other is new each time Axo starts. Neither ID is linked to your name, your Apple account or your Mac's serial number. When you turn the counts off, Axo deletes the first ID. If you turn the counts on again, Axo makes a new one.</li>
+    <li><strong>When it is sent:</strong> at once. If your Mac is offline, the count waits in memory and goes with the next one. Counts that wait are deleted when Axo quits. Nothing is saved in a file for later.</li>
+    <li><strong>What it never sends:</strong> your name, email, photos, camera frames, posture readings or the text of your reminders.</li>
+    <li><strong>Who receives it:</strong> TelemetryDeck (<code>nom.telemetrydeck.com</code>), which processes the counts for us. Like any web request, the connection shows your IP address to TelemetryDeck's servers.</li>
+  </ul>
+
+  <h2 id="website">This website</h2>
+  <p>axo.zensbot.com is a static website on Cloudflare Pages. It has no cookies, no analytics, no trackers and no third-party scripts.</p>
+  <p>Cloudflare serves the pages, so it receives your IP address and browser details, like any web host. The Download button and the Homebrew command get the app from GitHub, so GitHub receives that request.</p>
+
+  <h2 id="children">Children</h2>
+  <p>Axo is made for people who sit at a Mac, not for children. It asks no one for a name, email or age. If a child uses it, everything in this notice applies the same way.</p>
+
+  <h2 id="changes">Changes</h2>
+  <p>If this notice changes, we will post the new text on this page with a new effective date. Every change is public in the history of <code>docs/PRIVACY-NOTICE.md</code> in the GitHub repository.</p>
+
+  <h2 id="contact">Contact</h2>
+  <p>Questions or problems: open an issue at <a href="https://github.com/hassanarshad123/axo/issues">https://github.com/hassanarshad123/axo/issues</a>. Issues are public, so do not post private information there.</p>
+</article>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-brand">
+      <img src="/assets/axo/sleeping.png" width="197" height="192" alt="" loading="lazy" decoding="async">
+      <p>Axo by Hassan Arshad</p>
+    </div>
+    <ul class="footer-links">
+      <li><a href="https://github.com/hassanarshad123/axo">GitHub</a></li>
+      <li><a href="/privacy">Privacy</a></li>
+      <li><a href="https://github.com/hassanarshad123/axo/blob/main/LICENSE">MIT License</a></li>
+      <li><a href="https://github.com/hassanarshad123/axo/issues">Report a problem</a></li>
+    </ul>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,30 @@
+# Homebrew cask for Axo. scripts/release.sh fills in {{VERSION}} and {{SHA256}} (build/release/axo.rb).
+# scripts/publish.sh copies it to Casks/axo.rb in the tap repo hassanarshad123/homebrew-axo.
+# Install: brew install --cask hassanarshad123/axo/axo
+cask "axo" do
+  version "{{VERSION}}"
+  sha256 "{{SHA256}}"
+
+  url "https://github.com/hassanarshad123/axo/releases/download/v{{VERSION}}/Axo.dmg"
+  name "Axo"
+  desc "Posture and break buddy that lives in the notch"
+  homepage "https://axo.zensbot.com/"
+
+  livecheck do
+    url "https://axo.zensbot.com/appcast.xml"
+    strategy :sparkle
+  end
+
+  auto_updates true
+  depends_on macos: :sonoma # minimum macOS 14 (current Homebrew style for ">= :sonoma")
+
+  app "Axo.app"
+
+  zap trash: [
+    "~/Library/Application Support/Axo",
+    "~/Library/Caches/com.hassanarshad.axo",
+    "~/Library/HTTPStorages/com.hassanarshad.axo",
+    "~/Library/Preferences/com.hassanarshad.axo.plist",
+    "~/Library/Saved Application State/com.hassanarshad.axo.savedState",
+  ]
+end

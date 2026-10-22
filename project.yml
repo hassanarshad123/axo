@@ -1,0 +1,99 @@
+# XcodeGen spec. This file is the source of truth for the Xcode project.
+# Run `make project` to create Axo.xcodeproj (it is not committed).
+name: Axo
+
+options:
+  bundleIdPrefix: com.hassanarshad
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MARKETING_VERSION: "1.0.0"
+    # scripts/release.sh sets the build number (the git commit count), so each release is higher.
+    CURRENT_PROJECT_VERSION: "1"
+    # The TelemetryDeck app id. Empty = no usage counts. scripts/release.sh sets it from ~/.secrets.
+    TELEMETRYDECK_APP_ID: ""
+    ENABLE_HARDENED_RUNTIME: YES
+    # Local builds are signed "to run locally". The release build uses the
+    # Zensbot LLC Developer ID (see docs/RELEASE.md).
+    CODE_SIGN_STYLE: Manual
+    CODE_SIGN_IDENTITY: "-"
+    DEVELOPMENT_TEAM: ""
+
+packages:
+  BuddyKit:
+    path: Packages/BuddyKit
+  # Updates. MIT (with BSD and zlib parts). docs/DECISIONS.md T45.
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle
+    exactVersion: 2.10.0
+  # Usage counts need no package: App/Sources/UsageCounts.swift sends them (docs/DECISIONS.md T51).
+
+targets:
+  Axo:
+    type: application
+    platform: macOS
+    sources:
+      - App/Sources
+      - App/Resources
+    dependencies:
+      - package: BuddyKit
+        product: BuddyCore
+      - package: BuddyKit
+        product: PostureEngine
+      - package: BuddyKit
+        product: ActivityMonitor
+      - package: BuddyKit
+        product: NotchUI
+      - package: BuddyKit
+        product: History
+      - package: Sparkle
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: Axo
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        LSUIElement: true
+        LSApplicationCategoryType: public.app-category.healthcare-fitness
+        NSHumanReadableCopyright: "© 2026 Hassan Arshad"
+        NSCameraUsageDescription: >-
+          Axo looks at your head and shoulders for a few seconds each minute
+          to check your posture, and checks if you are still at your desk when you
+          stop typing. Pictures are checked on this Mac and thrown away at once,
+          unless you turn on progress photos, which stay on this Mac.
+        NSCameraUseContinuityCameraDeviceType: true
+        NSMotionUsageDescription: >-
+          Axo reads head motion from your AirPods to see when your head drops forward.
+        # Sparkle: the update list, the public half of the EdDSA key, a daily check, no system profile.
+        SUFeedURL: https://axo.zensbot.com/appcast.xml
+        # The private half is in the login Keychain (account "axo") and ~/.secrets/pem/sparkle-axo-eddsa.key.
+        SUPublicEDKey: "GeW6GWr+/TjeeRUX5LQ2mjZic3aaSrcNNOhP3uAX61k=" # gitleaks:allow (public key, safe to publish)
+        SUEnableAutomaticChecks: true
+        SUScheduledCheckInterval: 86400
+        SUEnableSystemProfiling: false
+        AxoTelemetryAppID: $(TELEMETRYDECK_APP_ID)
+    entitlements:
+      path: App/Axo.entitlements
+      properties:
+        com.apple.security.device.camera: true
+    settings:
+      base:
+        PRODUCT_NAME: Axo
+        PRODUCT_BUNDLE_IDENTIFIER: com.hassanarshad.axo
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        GENERATE_INFOPLIST_FILE: NO
+
+schemes:
+  Axo:
+    build:
+      targets:
+        Axo: all
+    run:
+      config: Debug
+    archive:
+      config: Release

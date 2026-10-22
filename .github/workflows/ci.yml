@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-build:
+    # macOS runners use 10x the free minutes on private repos. Keep this job short.
+    runs-on: macos-15
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show tools
+        run: xcodebuild -version && swift --version
+
+      - name: Unit tests
+        run: make test
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Build app
+        run: make build
