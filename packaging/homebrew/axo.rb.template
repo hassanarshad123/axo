@@ -5,14 +5,14 @@ cask "axo" do
   version "{{VERSION}}"
   sha256 "{{SHA256}}"
 
-  url "https://github.com/hassanarshad123/axo/releases/download/v{{VERSION}}/Axo.dmg"
+  url "https://github.com/hassanarshad123/axo/releases/download/v#{version}/Axo.dmg"
   name "Axo"
   desc "Posture and break buddy that lives in the notch"
   homepage "https://axo.zensbot.com/"
 
   livecheck do
     url "https://axo.zensbot.com/appcast.xml"
-    strategy :sparkle
+    strategy :sparkle, &:short_version # the feed also holds the build number (1.0.0,16)
   end
 
   auto_updates true
